@@ -1,0 +1,202 @@
+@import "tailwindcss";
+
+/* ========== THEME ========== */
+@theme {
+  --color-terra: #124734;
+  --color-terra-light: #1a5c45;
+  --color-barro: #C2BA98;
+  --color-barro-light: #d0c9ab;
+  --color-verde: #124734;
+  --color-verde-light: #1a5c45;
+  --color-fundo: #FAFAF8;
+  --color-fundo-alt: #F0EDE6;
+  --color-texto: #1A1A1A;
+  --color-texto-leve: #5C5C5C;
+  --color-whatsapp: #25D366;
+  --color-whatsapp-hover: #1fb855;
+  --font-sans: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+/* ========== BASE ========== */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 108px;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-texto);
+  background-color: var(--color-fundo);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========== SCROLL ANIMATIONS ========== */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.35s; }
+.reveal-delay-5 { transition-delay: 0.4s; }
+
+/* ========== HERO PATTERN ========== */
+.hero-pattern {
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(210, 105, 30, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 80%, rgba(46, 125, 50, 0.08) 0%, transparent 50%);
+}
+
+/* ========== GLASS CARD ========== */
+.glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* ========== WHATSAPP FLOAT PULSE ========== */
+@keyframes whatsapp-pulse {
+  0%, 100% {
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  }
+  50% {
+    box-shadow: 0 4px 36px rgba(37, 211, 102, 0.65),
+                0 0 0 12px rgba(37, 211, 102, 0.1);
+  }
+}
+
+.whatsapp-float-btn {
+  animation: whatsapp-pulse 2.5s ease-in-out infinite;
+}
+
+/* ========== GRAIN TEXTURE ========== */
+.grain::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* ========== BUTTON SPINNER ========== */
+.btn-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2.5px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  flex-shrink: 0;
+  margin-right: 4px;
+}
+
+.btn-loading {
+  opacity: 0.85;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ========== TOAST ANIMATIONS ========== */
+.toast-enter {
+  opacity: 0;
+  transform: translateX(100px);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.toast-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.toast-exit {
+  opacity: 0;
+  transform: translateX(100px);
+  transition: all 0.3s ease-in;
+}
+
+/* ========== SKELETON LOADING ========== */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: #e5e2dd;
+  border-radius: 8px;
+}
+
+.skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.skeleton-wrap {
+  transition: opacity 0.5s ease;
+}
+
+.skeleton-wrap.skeleton-loaded {
+  opacity: 0;
+}
+
+/* ========== TESTIMONIAL CAROUSEL ========== */
+.testimonial-carousel {
+  overflow: hidden;
+}
+
+.testimonial-track {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.testimonial-page {
+  min-width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding: 0 4px;
+}
+
+@media (max-width: 768px) {
+  .testimonial-page {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========== PROJECT CAROUSEL ========== */
+.project-slide {
+  flex-shrink: 0;
+  width: 100%;
+  min-width: 0;
+}
+
+/* ========== HOVER ENHANCEMENTS ========== */
+a[data-wa],
+.btn-orcamento-link,
+.contato-link {
+  position: relative;
+}
+
+/* Clickable elements cursor */
+[data-wa], [href], button, [role="button"] {
+  cursor: pointer;
+}
