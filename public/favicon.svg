@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Fundo verde -->
+  <rect width="64" height="64" rx="12" fill="#124734"/>
+  <!-- Letra M centralizada em bege -->
+  <text
+    x="32"
+    y="46"
+    font-family="Georgia, serif"
+    font-size="38"
+    font-weight="bold"
+    fill="#C2BA98"
+    text-anchor="middle"
+    letter-spacing="-1"
+  >M</text>
+</svg>
